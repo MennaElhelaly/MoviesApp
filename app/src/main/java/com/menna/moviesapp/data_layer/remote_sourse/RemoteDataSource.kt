@@ -2,7 +2,13 @@ package com.menna.moviesapp.data_layer.remote_sourse
 
 import android.util.Log
 import com.menna.moviesapp.data_layer.entity.Movies
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Inject
+
 
 class RemoteDataSource @Inject constructor() {
     suspend fun getNowPlayingMovies(): Movies?{
@@ -36,6 +42,40 @@ class RemoteDataSource @Inject constructor() {
         } catch (e: Exception) {
             e.printStackTrace()
             Log.i("Menna", "getPopularMovies error? " + e.printStackTrace())
+        }
+        return null
+    }
+    suspend fun getTopRatedMovies(): Movies?{
+        val response = MovieService.movieService.getTopRatedMovies(apiKey)
+        try {
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.i("Menna", "getTopRatedMovies response " + it)
+                    return it
+                }
+            } else {
+                Log.i("Menna", "getTopRatedMovies response failuer " + response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("Menna", "getTopRatedMovies error? " + e.printStackTrace())
+        }
+        return null
+    }
+    suspend fun getUpcomingMovies(): Movies?{
+        val response = MovieService.movieService.getUpcomingMovies(apiKey)
+        try {
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Log.i("Menna", "getUpcomingMovies response " + it)
+                    return it
+                }
+            } else {
+                Log.i("Menna", "getUpcomingMovies response failuer " + response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("Menna", "getUpcomingMovies error? " + e.printStackTrace())
         }
         return null
     }

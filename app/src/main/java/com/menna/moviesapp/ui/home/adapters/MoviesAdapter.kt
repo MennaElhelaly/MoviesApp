@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menna.moviesapp.R
 import com.menna.moviesapp.data_layer.entity.Result
+import javax.inject.Inject
 
 
-class MoviesAdapter(
+class MoviesAdapter @Inject constructor(
         private var moviesList: List<Result>,
         private var listener : OnClickMovieListener
 ) :
@@ -62,11 +63,9 @@ class MoviesAdapter(
     interface OnClickMovieListener {
         fun onMovieClick(item: Result)
     }
-
     override fun getItemCount(): Int {
         return moviesList.size
     }
-
     fun setData(list: List<Result>) {
         val diffUtil =MyDiffUtil(moviesList,list)
         val diffResult = DiffUtil.calculateDiff(diffUtil)

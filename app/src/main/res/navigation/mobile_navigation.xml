@@ -9,6 +9,23 @@
         android:id="@+id/navigation_home"
         android:name="com.menna.moviesapp.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
+    <action
+        android:id="@+id/action_navigation_home_to_detailsMovieFragment"
+        app:destination="@id/detailsMovieFragment">
+        <argument
+            android:name="movie"
+            app:argType="com.menna.moviesapp.data_layer.entity.Result" />
+    </action>
+    <fragment
+        android:id="@+id/detailsMovieFragment"
+        android:name="com.menna.moviesapp.ui.details.DetailsMovieFragment"
+        android:label="details_movie_fragment"
+        tools:layout="@layout/details_movie_fragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.menna.moviesapp.data_layer.entity.Result" />
+    </fragment>
 
 </navigation>
