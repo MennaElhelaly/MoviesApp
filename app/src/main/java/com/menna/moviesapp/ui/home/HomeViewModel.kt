@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.menna.moviesapp.data_layer.entity.Movies
 import com.menna.moviesapp.data_layer.remote_sourse.RemoteDataSource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(): ViewModel() {
 
     var progressBar = MutableLiveData<Boolean>()
     var nowPlayingMovies = MutableLiveData<Movies>()

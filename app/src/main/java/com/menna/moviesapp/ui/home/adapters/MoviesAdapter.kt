@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menna.moviesapp.R
@@ -67,8 +68,10 @@ class MoviesAdapter(
     }
 
     fun setData(list: List<Result>) {
+        val diffUtil =MyDiffUtil(moviesList,list)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
         moviesList = list
+        diffResult.dispatchUpdatesTo(this)
         notifyDataSetChanged()
-
     }
 }

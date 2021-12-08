@@ -2,8 +2,9 @@ package com.menna.moviesapp.data_layer.remote_sourse
 
 import android.util.Log
 import com.menna.moviesapp.data_layer.entity.Movies
+import javax.inject.Inject
 
-class RemoteDataSource() {
+class RemoteDataSource @Inject constructor() {
     suspend fun getNowPlayingMovies(): Movies?{
         val response = MovieService.movieService.getNowPlayingMovies(apiKey)
         try {
