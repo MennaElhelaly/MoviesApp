@@ -7,7 +7,3 @@ data class Movies(
     val total_pages: Int,
     val total_results: Int
 )
-data class Category(
-        val name: String,
-        val page: Int
-)

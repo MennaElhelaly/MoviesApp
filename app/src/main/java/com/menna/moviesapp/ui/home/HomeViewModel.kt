@@ -1,6 +1,5 @@
 package com.menna.moviesapp.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.menna.moviesapp.data_layer.entity.Category
@@ -20,16 +19,17 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
     val progressBar = MutableLiveData<Boolean>()
     val movies = MutableLiveData<Movies>()
     val network = MutableLiveData<Boolean?>()
-    val categoriesList = listOf(Category("Top Rated",1), Category("Now Playing",2),Category("Upcoming",3),
-    Category("Popular",4) )
+    var page = 1
+    val categoriesList = listOf(Category("Top Rated",1,false),
+        Category("Now Playing",2,false),
+        Category("Upcoming",3,false),
+        Category("Popular",4,false))
     private val handler = CoroutineExceptionHandler { _, exception ->
-        Log.e("Menna", "CoroutineExceptionHandler got +++++++++++++++++++++++++++ $exception")
-        network.postValue(false)
+        network.postValue(true)
     }
     init {
        getTopRatedMovies()
     }
-
     private fun getNowPlayingMovies() {
         CoroutineScope(Dispatchers.IO + handler).launch {
             progressBar.postValue(false)
@@ -40,38 +40,40 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
             }
         }
     }
-
     private fun getPopularMovies() {
         CoroutineScope(Dispatchers.IO + handler).launch {
             progressBar.postValue(false)
             val response = apiRepository.getPopularMovies()
             response?.let {
                 movies.postValue(it)
+                progressBar.postValue(true)
             }
         }
     }
-
     private fun getTopRatedMovies() {
         CoroutineScope(Dispatchers.IO + handler).launch {
             progressBar.postValue(false)
             val response = apiRepository.getTopRatedMovies()
             response?.let {
                 movies.postValue(it)
+                progressBar.postValue(true)
             }
         }
     }
-
     private fun getUpcomingMovies() {
         CoroutineScope(Dispatchers.IO + handler).launch {
             progressBar.postValue(false)
             val response = apiRepository.getUpcomingMovies()
             response?.let {
                 movies.postValue(it)
+                progressBar.postValue(true)
             }
         }
     }
-    fun getData(num:Int){
-        when (num) {
+    fun getData(item: Category){
+        item.selected =true
+        page = item.page
+        when (page) {
             1 -> {
                 getTopRatedMovies()
             }
@@ -85,6 +87,9 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
                 getPopularMovies()
             }
         }
+    }
+    fun editCategorySelected(){
+       categoriesList[page-1].selected =true
     }
 
 }

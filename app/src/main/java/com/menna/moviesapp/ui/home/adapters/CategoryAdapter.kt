@@ -1,9 +1,13 @@
 package com.menna.moviesapp.ui.home.adapters
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.menna.moviesapp.R
 import com.menna.moviesapp.data_layer.entity.Category
@@ -15,6 +19,14 @@ class CategoryAdapter(
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text=categoryList[position].name
+        if (categoryList[position].selected){
+            holder.title.setTextColor(Color.BLUE)
+            holder.title.typeface = Typeface.DEFAULT_BOLD;
+            categoryList[position].selected = false
+        }else {
+            holder.title.setTextColor(Color.BLACK)
+            holder.title.typeface = Typeface.DEFAULT;
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

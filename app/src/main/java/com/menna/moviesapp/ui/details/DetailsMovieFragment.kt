@@ -19,7 +19,7 @@ import com.menna.moviesapp.ui.home.adapters.MoviesAdapter
 
 class DetailsMovieFragment : Fragment() {
     private lateinit var binding: DetailsMovieFragmentBinding
-    val args: DetailsMovieFragmentArgs by navArgs()
+    private val args: DetailsMovieFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +37,9 @@ class DetailsMovieFragment : Fragment() {
         binding.releaseYear.text = movie.release_date
         binding.overviewValue.text = movie.overview
         if (movie.adult){
-            binding.adultValue.text = "Yes"
+            binding.adultValue.text = getString(R.string.yes)
         }else{
-            binding.adultValue.text = "NO"
+            binding.adultValue.text = getString(R.string.no)
         }
         val imageLink = "https://image.tmdb.org/t/p/w200" + movie.backdrop_path
         Glide.with(requireContext()).load(imageLink).into(binding.image)
