@@ -1,4 +1,4 @@
-package com.menna.moviesapp.ui.home
+package com.menna.moviesapp.ui.details
 
 import androidx.lifecycle.ViewModel
 
