@@ -1,5 +1,7 @@
 package com.menna.moviesapp.ui.movie_details
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +25,7 @@ class DetailsMovieFragment : Fragment() {
     private val viewModel: DetailsViewModel by viewModels()
     private lateinit var binding: DetailsMovieFragmentBinding
     private val args: DetailsMovieFragmentArgs by navArgs()
+    private var homePage =""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,10 @@ class DetailsMovieFragment : Fragment() {
 
         binding.arrowBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+        binding.goHome.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(homePage));
+            activity?.startActivity(browserIntent)
         }
         return binding.root
     }
@@ -63,6 +70,10 @@ class DetailsMovieFragment : Fragment() {
         movie.backdrop_path?.let {
             val imageLink = "https://image.tmdb.org/t/p/w200" + it
             Glide.with(requireContext()).load(imageLink).into(binding.image)
+        }
+        if (movie.homepage.isNotEmpty()){
+            binding.goHome.visibility = View.VISIBLE
+            homePage = movie.homepage
         }
 
     }
