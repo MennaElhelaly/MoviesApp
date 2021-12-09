@@ -67,9 +67,12 @@ class DetailsMovieFragment : Fragment() {
         }else{
             binding.adultValue.text = getString(R.string.no)
         }
-        movie.backdrop_path?.let {
+        movie.poster_path?.let {
             val imageLink = "https://image.tmdb.org/t/p/w200" + it
             Glide.with(requireContext()).load(imageLink).into(binding.image)
+        }
+        if (movie.poster_path.isNullOrEmpty()){
+            binding.image.setImageResource(R.drawable.empty)
         }
         if (movie.homepage.isNotEmpty()){
             binding.goHome.visibility = View.VISIBLE

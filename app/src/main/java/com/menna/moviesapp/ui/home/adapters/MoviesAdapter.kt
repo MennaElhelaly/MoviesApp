@@ -29,6 +29,9 @@ class MoviesAdapter @Inject constructor(
             val imageLink = "https://image.tmdb.org/t/p/w200" + it
             Glide.with(holder.image.context).load(imageLink).into(holder.image)
         }
+        if (moviesList[position].poster_path.isNullOrEmpty()){
+            holder.image.setImageResource(R.drawable.empty)
+        }
 
     }
 
