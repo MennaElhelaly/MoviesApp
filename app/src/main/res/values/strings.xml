@@ -6,4 +6,9 @@
     <string name="network_error">Network Error</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="adult">Adult</string>
+    <string name="overview">Overview</string>
+    <string name="original_language">Original Language</string>
+    <string name="original_title">Original Title</string>
+    <string name="relaseDate">Release Date</string>
 </resources>

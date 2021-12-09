@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.menna.moviesapp.R
 import com.menna.moviesapp.data_layer.entity.Result
+import com.menna.moviesapp.ui.home.adapters.diffutil.MyDiffUtil
 import javax.inject.Inject
 
 
@@ -67,7 +68,7 @@ class MoviesAdapter @Inject constructor(
         return moviesList.size
     }
     fun setData(list: List<Result>) {
-        val diffUtil =MyDiffUtil(moviesList,list)
+        val diffUtil = MyDiffUtil(moviesList,list)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         moviesList = list
         diffResult.dispatchUpdatesTo(this)

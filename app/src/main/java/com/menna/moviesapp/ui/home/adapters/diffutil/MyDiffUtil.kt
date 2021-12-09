@@ -1,4 +1,4 @@
-package com.menna.moviesapp.ui.home.adapters
+package com.menna.moviesapp.ui.home.adapters.diffutil
 
 import androidx.recyclerview.widget.DiffUtil
 import com.menna.moviesapp.data_layer.entity.Result

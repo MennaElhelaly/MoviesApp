@@ -1,21 +1,17 @@
 package com.menna.moviesapp.ui.details
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.menna.moviesapp.R
-import com.menna.moviesapp.data_layer.entity.Category
 import com.menna.moviesapp.data_layer.entity.Result
 import com.menna.moviesapp.databinding.DetailsMovieFragmentBinding
-import com.menna.moviesapp.databinding.FragmentHomeBinding
-import com.menna.moviesapp.ui.home.HomeViewModel
-import com.menna.moviesapp.ui.home.adapters.CategoryAdapter
-import com.menna.moviesapp.ui.home.adapters.MoviesAdapter
+
 
 class DetailsMovieFragment : Fragment() {
     private lateinit var binding: DetailsMovieFragmentBinding
@@ -28,6 +24,9 @@ class DetailsMovieFragment : Fragment() {
     ): View {
         binding = DetailsMovieFragmentBinding.inflate(layoutInflater)
         bindData(args.movie)
+        binding.arrowBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         return binding.root
     }
 
@@ -36,6 +35,8 @@ class DetailsMovieFragment : Fragment() {
         binding.rate.text = movie.vote_average.toString()
         binding.releaseYear.text = movie.release_date
         binding.overviewValue.text = movie.overview
+        binding.languageValue.text = movie.original_language
+        binding.originalTitle.text = movie.original_title
         if (movie.adult){
             binding.adultValue.text = getString(R.string.yes)
         }else{

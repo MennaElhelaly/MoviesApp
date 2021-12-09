@@ -3,7 +3,6 @@ package com.menna.moviesapp.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.menna.moviesapp.data_layer.entity.Category
-import com.menna.moviesapp.data_layer.entity.Movies
 import com.menna.moviesapp.data_layer.entity.Result
 import com.menna.moviesapp.data_layer.remote_sourse.RemoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
