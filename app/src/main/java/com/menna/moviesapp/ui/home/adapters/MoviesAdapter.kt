@@ -71,6 +71,5 @@ class MoviesAdapter @Inject constructor(
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         moviesList = list
         diffResult.dispatchUpdatesTo(this)
-        notifyDataSetChanged()
     }
 }

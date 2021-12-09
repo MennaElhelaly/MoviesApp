@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.menna.moviesapp.data_layer.entity.Category
 import com.menna.moviesapp.data_layer.entity.Movies
+import com.menna.moviesapp.data_layer.entity.Result
 import com.menna.moviesapp.data_layer.remote_sourse.RemoteDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -17,7 +18,7 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
     ViewModel() {
 
     val progressBar = MutableLiveData<Boolean>()
-    val movies = MutableLiveData<Movies>()
+    val movies = MutableLiveData<List<Result>>()
     val network = MutableLiveData<Boolean?>()
     var page = 1
     val categoriesList = listOf(Category("Top Rated",1,false),
@@ -35,7 +36,7 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
             progressBar.postValue(false)
             val response = apiRepository.getNowPlayingMovies()
             response?.let {
-                movies.postValue(it)
+                movies.postValue(it.results)
                 progressBar.postValue(true)
             }
         }
@@ -45,7 +46,7 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
             progressBar.postValue(false)
             val response = apiRepository.getPopularMovies()
             response?.let {
-                movies.postValue(it)
+                movies.postValue(it.results)
                 progressBar.postValue(true)
             }
         }
@@ -55,7 +56,7 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
             progressBar.postValue(false)
             val response = apiRepository.getTopRatedMovies()
             response?.let {
-                movies.postValue(it)
+                movies.postValue(it.results)
                 progressBar.postValue(true)
             }
         }
@@ -65,7 +66,7 @@ class HomeViewModel @Inject constructor(private val apiRepository: RemoteDataSou
             progressBar.postValue(false)
             val response = apiRepository.getUpcomingMovies()
             response?.let {
-                movies.postValue(it)
+                movies.postValue(it.results)
                 progressBar.postValue(true)
             }
         }

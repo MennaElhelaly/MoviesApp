@@ -42,14 +42,14 @@ class HomeFragment : Fragment(),CategoryAdapter.OnClickCategoryListener,MoviesAd
         categoryAdapter.setData(homeViewModel.categoriesList)
 
         initUI()
-        dataObservers()
+        reloadAdapterWithData()
         return binding.root
     }
 
-    private fun dataObservers() {
+    private fun reloadAdapterWithData() {
         homeViewModel.movies.observe(viewLifecycleOwner,{
             it?.let {
-                moviesAdapter.setData(it.results)
+                moviesAdapter.setData(it)
             }
         })
     }
