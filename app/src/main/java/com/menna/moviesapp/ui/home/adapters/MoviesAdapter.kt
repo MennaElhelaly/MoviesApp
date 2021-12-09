@@ -25,8 +25,11 @@ class MoviesAdapter @Inject constructor(
         holder.title.text = moviesList[position].title
         holder.title.isSelected = true
         holder.rate.text = moviesList[position].vote_average.toString()
-        val imageLink = "https://image.tmdb.org/t/p/w200" + moviesList[position].poster_path
-        Glide.with(holder.image.context).load(imageLink).into(holder.image)
+        moviesList[position].poster_path?.let {
+            val imageLink = "https://image.tmdb.org/t/p/w200" + it
+            Glide.with(holder.image.context).load(imageLink).into(holder.image)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

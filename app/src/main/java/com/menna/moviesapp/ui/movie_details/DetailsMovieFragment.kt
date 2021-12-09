@@ -1,4 +1,4 @@
-package com.menna.moviesapp.ui.details
+package com.menna.moviesapp.ui.movie_details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -60,8 +60,11 @@ class DetailsMovieFragment : Fragment() {
         }else{
             binding.adultValue.text = getString(R.string.no)
         }
-        val imageLink = "https://image.tmdb.org/t/p/w200" + movie.backdrop_path
-        Glide.with(requireContext()).load(imageLink).into(binding.image)
+        movie.backdrop_path?.let {
+            val imageLink = "https://image.tmdb.org/t/p/w200" + it
+            Glide.with(requireContext()).load(imageLink).into(binding.image)
+        }
+
     }
     override fun onResume() {
         super.onResume()

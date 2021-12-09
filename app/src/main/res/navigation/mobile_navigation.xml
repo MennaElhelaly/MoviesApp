@@ -20,7 +20,7 @@
     </action>
     <fragment
         android:id="@+id/detailsMovieFragment"
-        android:name="com.menna.moviesapp.ui.details.DetailsMovieFragment"
+        android:name="com.menna.moviesapp.ui.movie_details.DetailsMovieFragment"
         android:label="details_movie_fragment"
         tools:layout="@layout/details_movie_fragment" >
         <argument

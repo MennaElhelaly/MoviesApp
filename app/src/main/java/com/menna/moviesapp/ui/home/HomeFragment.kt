@@ -15,7 +15,7 @@ import com.menna.moviesapp.data_layer.entity.Category
 import com.menna.moviesapp.data_layer.entity.Result
 import com.menna.moviesapp.data_layer.remote_sourse.RemoteDataSource
 import com.menna.moviesapp.databinding.FragmentHomeBinding
-import com.menna.moviesapp.ui.details.DetailsMovieFragmentDirections
+import com.menna.moviesapp.ui.movie_details.DetailsMovieFragmentDirections
 import com.menna.moviesapp.ui.home.adapters.CategoryAdapter
 import com.menna.moviesapp.ui.home.adapters.MoviesAdapter
 import dagger.hilt.android.AndroidEntryPoint

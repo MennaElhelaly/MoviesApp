@@ -1,4 +1,4 @@
-package com.menna.moviesapp
+package com.menna.moviesapp.ui.application_di
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

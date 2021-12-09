@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.DetailsMovieFragment" >
+    tools:context=".ui.movie_details.DetailsMovieFragment" >
 
     <ImageView
         android:id="@+id/image"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@drawable/empty" />
     <ImageView
         android:id="@+id/circle"
         android:layout_width="40dp"
