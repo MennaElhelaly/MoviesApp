@@ -66,6 +66,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     >
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.305" />
 
                     <TextView
                         android:id="@+id/name"
@@ -100,6 +110,25 @@
                         app:layout_constraintBottom_toBottomOf="@+id/star"
                         app:layout_constraintStart_toEndOf="@+id/star"
                         app:layout_constraintTop_toTopOf="@+id/star" />
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/type"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="@+id/name"
+                        app:layout_constraintTop_toBottomOf="@+id/star" />
+
+                    <TextView
+                        android:id="@+id/type_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        tools:text="Action"
+                        app:layout_constraintBottom_toBottomOf="@+id/type"
+                        app:layout_constraintStart_toEndOf="@+id/type"
+                        app:layout_constraintTop_toTopOf="@+id/type" />
 
                     <TextView
                         android:id="@+id/release_year"
@@ -119,7 +148,7 @@
                         android:textColor="@color/black"
                         android:text="@string/relaseDate"
                         app:layout_constraintStart_toStartOf="@+id/name"
-                        app:layout_constraintTop_toBottomOf="@+id/star" />
+                        app:layout_constraintTop_toBottomOf="@+id/type" />
 
                     <TextView
                         android:id="@+id/adult"

@@ -1,12 +1,8 @@
 package com.menna.moviesapp.data_layer.remote_sourse
 
 import android.util.Log
+import com.menna.moviesapp.data_layer.entity.MovieDetails
 import com.menna.moviesapp.data_layer.entity.Movies
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
-import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.components.ViewModelComponent
 import javax.inject.Inject
 
 
@@ -16,15 +12,14 @@ class RemoteDataSource @Inject constructor() {
         try {
             if (response.isSuccessful) {
                 response.body()?.let {
-                    Log.i("Menna", "getNowPlayingMovies response " + it)
                     return it
                 }
             } else {
-                Log.i("Menna", "getNowPlayingMovies response failuer " + response.errorBody().toString())
+                Log.i("Remote", "getNowPlayingMovies response failuer " + response.errorBody().toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.i("Menna", "getNowPlayingMovies error? " + e.printStackTrace())
+            Log.i("Remote", "getNowPlayingMovies error? " + e.printStackTrace())
         }
         return null
     }
@@ -33,15 +28,14 @@ class RemoteDataSource @Inject constructor() {
         try {
             if (response.isSuccessful) {
                 response.body()?.let {
-                    Log.i("Menna", "getPopularMovies response " + it)
                     return it
                 }
             } else {
-                Log.i("Menna", "getPopularMovies response failuer " + response.errorBody().toString())
+                Log.i("Remote", "getPopularMovies response failuer " + response.errorBody().toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.i("Menna", "getPopularMovies error? " + e.printStackTrace())
+            Log.i("Remote", "getPopularMovies error? " + e.printStackTrace())
         }
         return null
     }
@@ -50,15 +44,14 @@ class RemoteDataSource @Inject constructor() {
         try {
             if (response.isSuccessful) {
                 response.body()?.let {
-                    Log.i("Menna", "getTopRatedMovies response " + it)
                     return it
                 }
             } else {
-                Log.i("Menna", "getTopRatedMovies response failuer " + response.errorBody().toString())
+                Log.i("Remote", "getTopRatedMovies response failuer " + response.errorBody().toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.i("Menna", "getTopRatedMovies error? " + e.printStackTrace())
+            Log.i("Remote", "getTopRatedMovies error? " + e.printStackTrace())
         }
         return null
     }
@@ -67,15 +60,30 @@ class RemoteDataSource @Inject constructor() {
         try {
             if (response.isSuccessful) {
                 response.body()?.let {
-                    Log.i("Menna", "getUpcomingMovies response " + it)
                     return it
                 }
             } else {
-                Log.i("Menna", "getUpcomingMovies response failuer " + response.errorBody().toString())
+                Log.i("Remote", "getUpcomingMovies response failuer " + response.errorBody().toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.i("Menna", "getUpcomingMovies error? " + e.printStackTrace())
+            Log.i("Remote", "getUpcomingMovies error? " + e.printStackTrace())
+        }
+        return null
+    }
+    suspend fun getMovieDetails(id:Int): MovieDetails?{
+        val response = MovieService.movieService.getMovieDetails(id,apiKey)
+        try {
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    return it
+                }
+            } else {
+                Log.i("Remote", "getMovieDetails response failuer " + response.errorBody().toString())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("Remote", "getMovieDetails error? " + e.printStackTrace())
         }
         return null
     }
